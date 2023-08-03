@@ -5,7 +5,7 @@ function Signup() {
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-    
+
     return (
         <div>
             <h1>Register</h1>
@@ -14,10 +14,11 @@ function Signup() {
                     <strong>Name</strong>
                 </label>
                 <input type="text"
-                    className="form-control"
+                    className="form-control rounded-0"
                     autoComplete="off"
                     name="name"
-                    placeholder="Enter your name" />
+                    placeholder="Enter your name" 
+                    onChange={(e) => setName(e.target.value)}/>
             </div>
 
             <div className="mb-3">
@@ -28,7 +29,8 @@ function Signup() {
                     className="form-control"
                     autoComplete="off"
                     name="email"
-                    placeholder="Enter your email" />
+                    placeholder="Enter your email"
+                    onChange={(e) => setEmail(e.target.value)} />
             </div>
 
             <div className="mb-3">
@@ -39,7 +41,8 @@ function Signup() {
                     className="form-control"
                     autoComplete="off"
                     name="password"
-                    placeholder="Enter your password" />
+                    placeholder="Enter your password" 
+                    onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <button type="submit" className="btn btn-primary">
                 Register
