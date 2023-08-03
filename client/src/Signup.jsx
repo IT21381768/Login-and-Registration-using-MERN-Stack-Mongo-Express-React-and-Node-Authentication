@@ -1,14 +1,24 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Signup() {
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios.post("", {name, email, password})
+        .then(result => console.log(result))
+        .catch(err => console.log(err))
+    }
+
+
     return (
         <div>
             <h1>Register</h1>
+            <form onSubmit={handleSubmit}>
             <div className="mb-3">
                 <label htmlFor="email">
                     <strong>Name</strong>
@@ -44,6 +54,7 @@ function Signup() {
                     placeholder="Enter your password" 
                     onChange={(e) => setPassword(e.target.value)}/>
             </div>
+            </form>
             <button type="submit" className="btn btn-primary">
                 Register
             </button>
@@ -52,6 +63,7 @@ function Signup() {
                 Login
             </Link>
         </div>
+        
     )
 }
 
