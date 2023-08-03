@@ -2,6 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Signup() {
+    const [name, setName] = useState()
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
+    
     return (
         <div>
             <h1>Register</h1>
