@@ -86,15 +86,43 @@ app.post("/login", (req, res) => {
     });
 });
 
+// app.post('/register', (req, res) => {
+//   EmployeeModel.create(req.body)
+//     .then(employee => res.json(employee))
+//     .catch(err => {
+//       console.error('Error during registration:', err);
+//       res.status(500).json("Server error");
+//     });
+// });
+
+// ...
+
 app.post('/register', (req, res) => {
-  EmployeeModel.create(req.body)
-    .then(employee => res.json(employee))
+  const { email, password } = req.body;
+
+  // Check if an employee with the provided email already exists
+  EmployeeModel.findOne({ email: email })
+    .then(existingEmployee => {
+      if (existingEmployee) {
+        // An employee with the given email already exists
+        res.status(400).json("Email is already in use");
+      } else {
+        // Create a new employee with the provided data
+        EmployeeModel.create({ email: email, password: password })
+          .then(employee => res.json(employee))
+          .catch(err => {
+            console.error('Error during registration:', err);
+            res.status(500).json("Server error");
+          });
+      }
+    })
     .catch(err => {
       console.error('Error during registration:', err);
       res.status(500).json("Server error");
     });
 });
 
+// ...
 
 
 
