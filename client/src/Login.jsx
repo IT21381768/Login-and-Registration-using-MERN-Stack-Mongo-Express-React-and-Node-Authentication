@@ -30,10 +30,8 @@ function Login() {
                 if (result.data === "Login Success") {
                     navigate("/home");
                 } else if (result.data === "Password didn't match") {
-                    // Show an error message or handle the incorrect password scenario here
                     console.log("Password is incorrect");
                 } else if (result.data === "User not registered") {
-                    // Show an error message or handle the user not registered scenario here
                     console.log("User is not registered");
                 }
             })

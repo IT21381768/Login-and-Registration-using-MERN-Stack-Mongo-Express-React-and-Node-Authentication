@@ -57,7 +57,6 @@ const mongoURI = 'mongodb+srv://minsandi:minsandi123@mernapp.cnpzawc.mongodb.net
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('MongoDB connected');
-    // Start the server after successful MongoDB connection
     app.listen(3001, () => {
       console.log('Server is running on port 3001...');
     });
@@ -104,10 +103,8 @@ app.post('/register', (req, res) => {
   EmployeeModel.findOne({ email: email })
     .then(existingEmployee => {
       if (existingEmployee) {
-        // An employee with the given email already exists
         res.status(400).json("Email is already in use");
       } else {
-        // Create a new employee with the provided data
         EmployeeModel.create({ email: email, password: password })
           .then(employee => res.json(employee))
           .catch(err => {
