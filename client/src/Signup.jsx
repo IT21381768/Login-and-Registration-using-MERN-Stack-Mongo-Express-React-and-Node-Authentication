@@ -67,7 +67,11 @@ function Signup() {
             <p>Already have a account</p>
             <Link to="/login" type="submit" className="btn btn-primary">
                 Login
-            </Link>
+            </Link> 
+
+
+
+
         </div>
 
     )
