@@ -8,18 +8,37 @@ function Login() {
     const [password, setPassword] = useState()
     const navigate = useNavigate()
 
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     axios.post("http://localhost:3001/login", { email, password })
+    //         .then(result => {
+    //             console.log(result)
+    //             // navigate("/home")
+    //             if(result.data === "Success"){
+    //             navigate("/home")
+    //             }
+    //         })
+    //         .catch(err => console.log(err))
+    // }
+
+
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         axios.post("http://localhost:3001/login", { email, password })
             .then(result => {
-                console.log(result)
-                // navigate("/home")
-                if(result.data === "Success"){
-                navigate("/home")
+                console.log(result);
+                if (result.data === "Login Success") {
+                    navigate("/home");
+                } else if (result.data === "Password didn't match") {
+                    // Show an error message or handle the incorrect password scenario here
+                    console.log("Password is incorrect");
+                } else if (result.data === "User not registered") {
+                    // Show an error message or handle the user not registered scenario here
+                    console.log("User is not registered");
                 }
             })
-            .catch(err => console.log(err))
-    }
+            .catch(err => console.log(err));
+    };
 
 
     return (
@@ -56,10 +75,6 @@ function Login() {
                     Login
                 </button>
             </form>
-            {/* <p>Already have a account</p>
-            <Link to="/login" type="submit" className="btn btn-primary">
-                Login
-            </Link> */}
         </div>
     )
 }
